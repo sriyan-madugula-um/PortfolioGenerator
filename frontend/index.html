@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="{{ first_name ~ ' ' ~ last_name }}">
-  <meta name="keywords" content="{{ first_name ~ ' ' ~ last_name }}, {{ first_name }}, portfolio, resume, software, swe, intern, recruit, engineer, software engineering">
-  <meta name="description" content="{{ first_name }}'s Personal Website">
-  <title>{{ first_name }}'s Personal Website</title>
+  <meta name="author" content="Sriyan Madugula">
+  <meta name="keywords" content="Sriyan Madugula, Sriyan, portfolio, resume, software, swe, intern, recruit, engineer, software engineering">
+  <meta name="description" content="Sriyan's Personal Website">
+  <title>Sriyan's Personal Website</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,7 +27,7 @@
   </div>
   <nav class="navbar">
     <div class="max-width">
-      <div class="logo"><a href="#">{{ first_name }} <span>{{ last_name }}</span></a></div>
+      <div class="logo"><a href="#">Sriyan <span>Madugula</span></a></div>
       <ul class="menu">
         <li><a href="#about">About</a></li>
         <li><a href="resume.html" target="_blank">Resume</a></li>
@@ -44,7 +44,7 @@
     </span><div class="max-width" style="position: relative; z-index: 1;">
       <div class="home-content">
         <div class="text-1">Hello, my name is</div>
-        <div class="text-2">{{ first_name ~ ' ' ~ last_name }}</div>
+        <div class="text-2">Sriyan Madugula</div>
         <a href="resume.html" target="_blank"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
           View Resume</a>
       </div>
@@ -60,7 +60,7 @@
           <img src="pfp.png" alt="headshot">
         </div>
         <div class="column right">
-          <p>{{ about }}</p>
+          <p>I'm a rising sophomore at the University of Michigan expecting to graduate in May 2026. I'm interested in Artificial Intelligence &amp; Web Development, and I have been able to explore these fields through my coursework and projects.</p>
           <a href="#contact">Get In Touch</a>
         </div>
       </div>
@@ -76,20 +76,20 @@
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="bg-neutral-800 rounded-lg shadow-md p-6">
               <h3 class="text-xl font-bold mb-2">Degree</h3>
-              <p class="text-lg mb-2">{{ education_1 }}</p>
+              <p class="text-lg mb-2">UNIVERSITY OF MICHIGAN – Ann Arbor, MI Expected May 2026 Bachelor of Science Engineering, Computer Science; Cumulative GPA: 4.0/4.0</p>
               <ul class="list-disc pl-8">
               </ul>
             </div>
             <div class="bg-neutral-800 rounded-lg shadow-md p-6">
               <h3 class="text-xl font-bold mb-2">Extracurriculars</h3>
-              <p class="text-lg mb-2">{{ education_3 }}</p>
+              <p class="text-lg mb-2">MHacks, MEG Consulting, Cantor Coding & Trading, MRacing Autonomous, Shipman Society </p>
               <ul class="list-disc pl-8">
               </ul>
             </div>
           </div>
           <div class="bg-neutral-800 rounded-lg shadow-md p-6">
             <h3 class="text-xl font-bold mb-2">Coursework</h3>
-            <p class="text-lg mb-2">{{ education_2 }}</p>
+            <p class="text-lg mb-2">Discrete Mathematics, Algorithms/Data Structures, Probability/Statistics, Foundations of CS</p>
           </div>
         </div>
       </div>
@@ -104,13 +104,13 @@
         <div class="grid grid-cols-1 gap-6">
           <div class="bg-gray-100 rounded-lg shadow-md p-6">
             <div style="width: 40%; float:right"><img class="h-32 mx-auto" src="umich_mdst.png" alt="mdst logo"></div>
-            <h3 style="width: 60%; float:left" class="text-xl font-bold mb-2">{{experience_1}}</h3>
-            <p class="text-lg mb-2">{{position_1}}, {{date_1}}</p>
+            <h3 style="width: 60%; float:left" class="text-xl font-bold mb-2">Michigan Data Science Team</h3>
+            <p class="text-lg mb-2">Web Developer, GitHub Maintainer, Mar 2024 – Present</p>
           </div>
           <div class="bg-gray-100 rounded-lg shadow-md p-6">
             <div style="width: 40%; float:right"><img class="h-32 mx-auto" src="helivox.png" alt="helivox logo"></div>
-            <h3 style="width: 60%; float:left" class="text-xl font-bold mb-2">{{experience_2}}</h3>
-            <p class="text-lg mb-2">{{position_2}}, {{date_2}}</p>
+            <h3 style="width: 60%; float:left" class="text-xl font-bold mb-2">HELIVOX</h3>
+            <p class="text-lg mb-2">Co-Founder, Software Engineer, Mar 2022 – July 2023 </p>
             <ul class="list-disc pl-8">
             </ul>
           </div>
@@ -150,20 +150,20 @@
       <h2 class="title">Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-gray-100 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">{{ p1 }}</h3>
-          <p class="text-lg mb-4"> {{ p1_desc }}</p>
+          <h3 class="text-xl font-bold mb-4">Portfolio Website Generator</h3>
+          <p class="text-lg mb-4"> Developed a web application to generate and customize a portfolio website tailored to a user's resume (Python, Flask, React, Tailwind CSS)</p>
         </div>
         <div class="bg-gray-100 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">{{ p2 }}</h3>
-          <p class="text-lg mb-4">{{ p2_desc }}</p>
+          <h3 class="text-xl font-bold mb-4">Noteworthy.ai</h3>
+          <p class="text-lg mb-4">Designed a full-stack application that converts user-uploaded notes into concise exam cheat sheets (React, Bootstrap, Python, Express.js)</p>
         </div>
         <div class="bg-gray-100 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">{{ p3 }}</h3>
-          <p class="text-lg mb-4">{{ p3_desc }}</p>
+          <h3 class="text-xl font-bold mb-4">Fake News Classifier</h3>
+          <p class="text-lg mb-4">Engineered and fine-tuned a BERT-based model to detect fake news articles, achieving 98% accuracy on a dataset of over 40,000 news articles (Python, Pandas, Scikit-learn, PyTorch)</p>
         </div>
         <div class="bg-gray-100 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">{{ p4 }}</h3>
-          <p class="text-lg mb-4">{{ p4_desc }}</p>
+          <h3 class="text-xl font-bold mb-4">Multiple Heuristics Solving TSP</h3>
+          <p class="text-lg mb-4">Returned the Minimum Spanning Tree given graph coordinates using Prim’s and Kruskal’s algorithm, optimized suboptimal Arbitrary Insertion with Branch-and-Bound to prune unpromising path permutations (C++) </p>
         </div>
       </div>
     </div>
@@ -201,7 +201,7 @@
               <i class="fa-solid fa-user" aria-hidden="true"></i>
               <div class="info">
                 <div class="head">Name</div>
-                <div class="sub-title">{{ first_name ~ ' ' ~ last_name }}</div>
+                <div class="sub-title">Sriyan Madugula</div>
               </div>
             </div>
 
@@ -209,7 +209,7 @@
               <i class="fa-solid fa-envelope" aria-hidden="true"></i>
               <div class="info">
                 <div class="head">Email</div>
-                <div class="sub-title">{{ email }}</div>
+                <div class="sub-title">sriyan@umich.edu</div>
               </div>
             </div>
 
@@ -217,21 +217,21 @@
               <i class="fa-solid fa-phone" aria-hidden="true"></i>
               <div class="info">
                 <div class="head">Phone Number</div>
-                <div class="sub-title">{{ phone_number }}</div>
+                <div class="sub-title">248-787-4481</div>
               </div>
             </div>
 
             <div class="row">
               <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
               <div class="info">
-                <div class="head"><a href="{{link_1}}" target="_blank">{{company_1}}</a></div>
+                <div class="head"><a href="https://linkedin.com/in/sriyanm" target="_blank">LinkedIn</a></div>
               </div>
             </div>
 
             <div class="row">
               <i class="fa-brands fa-github" aria-hidden="true"></i>
               <div class="info">
-                <div class="head"><a href="{{link_2}}" target="_blank">{{company_2}}</a></div>
+                <div class="head"><a href="https://github.com/sriyan-madugula-um " target="_blank">Github</a></div>
               </div>
             </div>
 
@@ -269,7 +269,7 @@
 
   <!-- footer -->
   <footer>
-    <span>Created by <a href="#about"><i class="fa-solid fa-chess-knight" aria-hidden="true"></i> {{ first_name ~ ' ' ~ last_name }}</a> 2024</span>
+    <span>Created by <a href="#about"><i class="fa-solid fa-chess-knight" aria-hidden="true"></i> Sriyan Madugula</a> 2024</span>
   </footer>
 
   <!-- scripts -->

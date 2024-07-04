@@ -1,0 +1,54 @@
+Sriyan Madugula
+Troy, MI | 248-787-4481 | sriyan@umich.edu | linkedin.com/in/sriyanm | github.com/sriyan-madugula-um
+WORK EXPERIENCE & LEADERSHIP
+MICHIGAN DATA SCIENCE TEAM - Ann Arbor, MI
+Web Developer, GitHub Maintainer https://mdst.club/
+Mar 2024 – Present
+●Maintain the Michigan Data Science Team's website using Next.js to promote interactivity and engagement
+●Facilitate office hours to support new MDST members in navigating Git repositories and resolving conflicts
+●Build a comprehensive Data Science Toolbox detailing essential tools and techniques like Google Colab, web
+scraping, and linear regression models, empowering team members to streamline project workflows
+HELIVOX - Troy, MI
+Co-Founder, Software Engineer
+Mar 2022 – July 2023
+●Constructed www.helivox.com using JavaScript for creating 100+ catalogs of data on high school
+courses/clubs, ranging from time commitment to career preparedness, to forward diverse academic interests
+●Organized a team of 7 article writers publishing advice for college applications through leading by example
+●Expanded the catalogs and our USP to 15 additional schools throughout the nation in less than 6 months
+PROJECT EXPERIENCE
+PORTFOLIO WEBSITE GENERATOR - HTML, CSS, JavaScript
+Jun 2024 - Present
+●Develop a web application in Python using Flask, integrating PDF parsing to extract and categorize resume
+content, to allow users to generate and customize a portfolio website tailored to their resume
+●Implement REST API endpoints to manage user authentication, resume upload, data storage, and portfolio
+generation, leveraging React for the front-end interface and Tailwind CSS for responsive design
+●Integrating a chatbot feature using Rasa for user assistance on platform's functionalities
+NOTEWORTHY.AI - React.JS https://devpost.com/software/noteworthy-ai
+Apr 2024
+●Designed a full-stack application that converts user-uploaded notes into concise exam cheat sheets using
+React and Bootstrap for frontend, and Python with Express.js for the backend
+●Created a seamless pipeline to convert PDF notes into images, extract content using the Gemini 1.5 Pro API,
+and compile the data into a well-organized LaTeX document, significantly enhancing user experience
+FAKE NEWS CLASSIFIER - Python
+Feb 2024 – Mar 2024
+●Engineered and fine-tuned an end-to-end BERT-based model to detect fake news articles, achieving 98%
+accuracy on a dataset of over 40,000 news articles, thereby contributing to combating misinformation
+●Executed efficient processing and preparation of textual data using pandas, scikit-learn, and PyTorch
+●Applied transfer learning by fine-tuning the BERT model pre-trained on a large corpus, utilizing GPU
+acceleration for training, and optimizing hyperparameters to enhance model performance and scalability
+MULTIPLE HEURISTICS SOLVING TSP - C++
+Jan 2024
+●Returned the Minimum Spanning Tree given graph coordinates using Prim’s and Kruskal’s algorithm
+●Optimized suboptimal Arbitrary Insertion with Branch-and-Bound to prune unpromising path permutations
+EDUCATION
+UNIVERSITY OF MICHIGAN – Ann Arbor, MI
+Expected May 2026
+Bachelor of Science Engineering, Computer Science; Cumulative GPA: 4.0/4.0
+Activities: MHacks, MEG Consulting, Cantor Coding & Trading, MRacing Autonomous, Shipman Society
+Relevant Courses: Discrete Mathematics, Algorithms/Data Structures, Probability/Statistics, Foundations of CS
+SKILLS
+Languages/Frameworks: C++, Java, React.JS, Next.JS, Python, Pandas, NumPy, Scikit, PyTorch, SQL
+Awards: Shipman Scholarship, Dean’s Honor List, Branstrom Freshman Prize (Top 5% of Freshman Class)
+ADDITIONAL INTERESTS
+Wikiracing, Formula 1, Tennis, Infrastructure, GeoGuessr, the Internet, Neural Networks, Astronomy, Filmmaking
+
