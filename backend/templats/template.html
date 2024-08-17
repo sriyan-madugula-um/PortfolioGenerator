@@ -58,6 +58,7 @@
       <div class="about-content">
         <div class="column left">
           <img src="pfp.png" alt="headshot">
+          <!-- replace 'pfp.png' with your headshot -->
         </div>
         <div class="column right">
           <p>{{ about }}</p>
@@ -103,12 +104,14 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 gap-6">
           <div class="bg-gray-100 rounded-lg shadow-md p-6">
-            <div style="width: 40%; float:right"><img class="h-32 mx-auto" src="umich_mdst.png" alt="mdst logo"></div>
+            <div style="width: 40%; float:right"><img class="h-32 mx-auto" src="experience_1.png" alt="{{experience_1}} logo"></div>
+            <!-- replace experience_1.png in src with an image of your experience (a logo would work well)  -->
             <h3 style="width: 60%; float:left" class="text-xl font-bold mb-2">{{experience_1}}</h3>
             <p class="text-lg mb-2">{{position_1}}, {{date_1}}</p>
           </div>
           <div class="bg-gray-100 rounded-lg shadow-md p-6">
-            <div style="width: 40%; float:right"><img class="h-32 mx-auto" src="helivox.png" alt="helivox logo"></div>
+            <div style="width: 40%; float:right"><img class="h-32 mx-auto" src="experience_2.png" alt="{{experience_2}} logo"></div>
+            <!-- replace experience_2.png in src with an image of your experience (a logo would work well)  -->
             <h3 style="width: 60%; float:left" class="text-xl font-bold mb-2">{{experience_2}}</h3>
             <p class="text-lg mb-2">{{position_2}}, {{date_2}}</p>
             <ul class="list-disc pl-8">
@@ -126,19 +129,21 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-neutral-800 rounded-lg shadow-md p-6">
           <h3 class="text-xl font-bold mb-4">Languages</h3>
-          <p class="text-lg mb-4">English (native), Telugu (native), French (intermediate)</p>
+          <p class="text-lg mb-4">{{langs}}</p>
+          <!-- if text above is 'Empty', comment out the code above and uncomment the code below -->
+          <!-- <p class="text-lg mb-4"> *Write the languages you know here* </p>  -->
         </div>
         <div class="bg-neutral-800 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">Programming Languages</h3>
-          <p class="text-lg mb-4">C++, Java, C++, Javascript, HTML, CSS</p>
+          <h3 class="text-xl font-bold mb-4">{{skill_title_2}}</h3>
+          <p class="text-lg mb-4">{{skills_2}}</p>
         </div>
         <div class="bg-neutral-800 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">Frameworks</h3>
-          <p class="text-lg mb-4">Node, React, Pandas, NumPy, Scikit-learn</p>
+          <h3 class="text-xl font-bold mb-4">{{skill_title_3}}</h3>
+          <p class="text-lg mb-4">{{skills_3}}</p>
         </div>
         <div class="bg-neutral-800 rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-bold mb-4">Tools &amp; Technologies</h3>
-          <p class="text-lg mb-4">Git, Azure, AWS, Bash Scripting</p>
+          <h3 class="text-xl font-bold mb-4">{{skill_title_4}}</h3>
+          <p class="text-lg mb-4">{{skills_4}}</p>
         </div>
       </div>
     </div>
@@ -176,12 +181,9 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
           <div class="bg-neutral-800 rounded-lg shadow-md p-6">
-            <h3 class="text-xl font-bold mb-2">Academic</h3>
+            <!-- <h3 class="text-xl font-bold mb-2">Academic</h3> -->
             <ul class="list-disc pl-8">
-              <li>Sidney J. and Irene Shipman Scholarship</li>
-              <li>Engineering Dean's Honor List</li>
-              <li>University Honors</li>
-              <li>William J. Branstrom Freshman Prize (Top 5% of Freshman Class)</li>
+                {{ awards }}
             </ul>
           </div>
       </div>
@@ -239,6 +241,7 @@
         </div>
         <div class="column right">
           <div class="text">Message me</div>
+          <!-- this link needs to change every time -->
           <form action="https://formsubmit.co/e55b9dbcd556985154b31bfb06ffe534" method="POST">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="box">

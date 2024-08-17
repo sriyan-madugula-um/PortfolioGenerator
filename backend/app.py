@@ -8,10 +8,27 @@ import google.generativeai as genai
 
 app = Flask(__name__)
 
+@app.route('/api/upload', methods=['POST'])
+def upload_file():
+    if 'resume' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    
+    file = request.files['resume']
+    
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    # Save the file (optional)
+    file.save(f'uploads/{file.filename}')
+    
+    # Process the file (e.g., extract text)
+    
+    return jsonify({'message': 'File uploaded successfully'}), 200
+
 # Set up the environment for Jinja2
 env = Environment(loader=FileSystemLoader('templats'))
 
-genai.configure(api_key=os.environ["API_KEY"])
+genai.configure(api_key='AIzaSyDrHsiAQLUkEETx4Yt67AESvJvBJCFZF8E')
 
 # openai.api_key = os.getenv('OPENAI_API_KEY')
 
@@ -20,7 +37,7 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 possible_sections = [
     'SUMMARY', 'ABOUT', 'ABOUT ME', 'EXPERIENCE', 'WORK EXPERIENCE',
     'PROFESSIONAL EXPERIENCE', 'PROJECT', 'PROJECTS', 'PROJECT EXPERIENCE', 'RELATED EXPERIENCE', 'LEADERSHIP', 'EDUCATION',
-    'SKILLS', 'CERTIFICATIONS', 'AWARDS', 'ADDITIONAL', 'OTHER', 'INTERESTS', 'ADDITIONAL INTERESTS'
+    'SKILLS', 'EXPERTISE', 'CERTIFICATIONS', 'AWARDS', 'ADDITIONAL', 'OTHER', 'INTERESTS', 'ADDITIONAL INTERESTS'
 ]
 headers = ["About", "Education", "Experience", "Skills", "Projects", "Awards", "Other"]
 def base(key):
@@ -35,7 +52,7 @@ def base(key):
         return 'Education'
     elif(key == 'awards'):
         return 'Awards'
-    elif(key == 'skills' or key == 'certifications'):
+    elif(key == 'skills' or key == 'certifications' or key == 'expertise'):
         return 'Skills'
     else:
         return 'Other'
@@ -184,26 +201,68 @@ def classify_sections(text):
         sections['p3_desc'] = p3_desc 
         sections['p4'] = p4
         sections['p4_desc'] = p4_desc 
+    
+    def updateAwards(sections):
+        if sections['Awards'].strip() == '':
+            # print('beans')
+            keyword = "Awards: "
+            if keyword in sections['Skills']:
+                start_index = sections['Skills'].index(keyword) + len(keyword)
+                sections['Awards'] = sections['Skills'][start_index:].strip()
+                sections['Skills'] = sections['Skills'][:sections['Skills'].index(keyword)].strip()
+        list_html = ''
+        for word in sections['Awards'].split(','):
+            if word:
+                list_html+=f"<li>{word.strip()}</li>\n"
+        sections['Awards'] = list_html
+            
+    def updateSkills(sections):
+        prompt_input = sections['Skills']
+        prompt = f"Here is some text:\n{prompt_input}\nThis text includes a bunch of skills included on a resume. Divide and organize these skills into 4 sections, each outputted on a separate line (for a total of 4 lines in your output). The first line should contain any languages (not programming languages, but spoken languages) present in the skills. If no languages are present, just output empty for this line. The remaining 3 lines will contain a division of the skills up to your own discretion. Try to divide the skills into 3 separate categories. If that does not seem feasible or if there are too few skills for that to work, you can just divide them into 2 categories and leave the last line empty. You have to at least divide the skills into 2 separate categories no matter what.\nThe formatting of the output should be as follows: The first line should just contain the languages separated by commas, or empty if no languages are present in the input. The remaining 3 lines all follow the same formatting: Write a category title for the set of skills, followed by a colon, and then followed by the skills within that category. If you only divide into 2 categories instead of 3, then output Empty: empty for the final category on the 4th line. The input may also contain category names, feel free to use those. Try not to have only one skill in any category, but make sure all skills are in some category. Make sure the final output is exactly 4 lines."
+        response = model.generate_content(prompt)
+        # print(response.text)
+        langs = response.text.split('\n')[0]
+        skill_title_2 = response.text.split('\n')[1].split(':')[0]
+        skills_2 = response.text.split('\n')[1].split(':')[1]
+        skill_title_3 = response.text.split('\n')[2].split(':')[0]
+        skills_3 = response.text.split('\n')[2].split(':')[1]
+        skill_title_4 = response.text.split('\n')[3].split(':')[0]
+        skills_4 = response.text.split('\n')[3].split(':')[1]
+        # del sections['Skills]
+        sections['langs'] = langs
+        sections['skill_title_2'] = skill_title_2
+        sections['skills_2'] = skills_2
+        sections['skill_title_3'] = skill_title_3
+        sections['skills_3'] = skills_3
+        sections['skill_title_4'] = skill_title_4
+        sections['skills_4'] = skills_4
+            
+    def updateDescriptors(sections):
+        prompt_input = contact
+        prompt = f"Here is some text: \n{prompt_input}\nOrganize all of this text into 6 sections: 1. First name 2. Last name 3. Email address 4. Phone number 5. First company and link 6. Second company and link Organize this information into 6 sections, and then print the sections on 6 separate lines in plain text, in the order I presented them to you. Don't include the section number. For sections 5 to 6 that include links, write the company that the link refers to, followed by the link from the original text input. If the link doesn't start with https://, add https:// to the beginning of the link. University email addresses are not companies or links, so don't include them in sections 5-6. Section 3 should just be the email, no parentheses. For example, a Youtube link should output 'Youtube' followed by the link starting with https://. If you identify less than 2 links, write 'empty company' for the company and 'empty link' for the link. If you identify more than 2 links, ignore the links after the first two. Keep in mind that not every word in the input text must fit into any of the sections - in particular, any locations, addresses, or dates should be ignored. If first name, last name, email, or phone number are also not available in the input text, write 'empty' followed by the name of the section."
+        response = model.generate_content(prompt)
+        output = response.text
+        descriptors = {
+            'first_name' : output.split('\n')[0],
+            'last_name' : output.split('\n')[1],
+            'email' : output.split('\n')[2],
+            'phone_number' : output.split('\n')[3],
+            'company_1' : output.split('\n')[4],
+            'link_1' : output.split('\n')[5],
+            'company_2' : output.split('\n')[6],
+            'link_2' : output.split('\n')[7],
+            # need to receive about input
+            'About' : "I'm a rising sophomore at the University of Michigan expecting to graduate in May 2026. I'm interested in Artificial Intelligence &amp; Web Development, and I have been able to explore these fields through my coursework and projects."
+        }
+        sections.update(descriptors) # might need to reverse based on about section
+        
         
     updateEducation(sections)
     updateExperience(sections)
     updateProjects(sections)
-    prompt_input = contact
-    prompt = f"Here is some text: \n{prompt_input}\nOrganize all of this text into 6 sections: 1. First name 2. Last name 3. Email address 4. Phone number 5. First company and link 6. Second company and link Organize this information into 6 sections, and then print the sections on 6 separate lines in plain text, in the order I presented them to you. Don't include the section number. For sections 5 to 6 that include links, write the company that the link refers to, followed by the link from the original text input. If the link doesn't start with https://, add https:// to the beginning of the link. University email addresses are not companies or links, so don't include them in sections 5-6. Section 3 should just be the email, no parentheses. For example, a Youtube link should output 'Youtube' followed by the link starting with https://. If you identify less than 2 links, write 'empty company' for the company and 'empty link' for the link. If you identify more than 2 links, ignore the links after the first two. Keep in mind that not every word in the input text must fit into any of the sections - in particular, any locations, addresses, or dates should be ignored. If first name, last name, email, or phone number are also not available in the input text, write 'empty' followed by the name of the section."
-    response = model.generate_content(prompt)
-    output = response.text
-    descriptors = {
-        'first_name' : output.split('\n')[0],
-        'last_name' : output.split('\n')[1],
-        'email' : output.split('\n')[2],
-        'phone_number' : output.split('\n')[3],
-        'company_1' : output.split('\n')[4],
-        'link_1' : output.split('\n')[5],
-        'company_2' : output.split('\n')[6],
-        'link_2' : output.split('\n')[7],
-        'About' : "I'm a rising sophomore at the University of Michigan expecting to graduate in May 2026. I'm interested in Artificial Intelligence &amp; Web Development, and I have been able to explore these fields through my coursework and projects."
-    }
-    sections.update(descriptors) # might need to reverse based on about section
+    updateAwards(sections)
+    updateSkills(sections)
+    updateDescriptors(sections)
     return sections
 
 def generate_html(sections):
@@ -234,11 +293,19 @@ def generate_html(sections):
         company_1 = sections['company_1'],
         link_1 = sections['link_1'],
         company_2 = sections['company_2'],
-        link_2 = sections['link_2']       
+        link_2 = sections['link_2'],
+        awards = sections['Awards'],
+        langs = sections['langs'],
+        skill_title_2 = sections['skill_title_2'],
+        skill_title_3 = sections['skill_title_3'],
+        skill_title_4 = sections['skill_title_4'],
+        skills_2 = sections['skills_2'],
+        skills_3 = sections['skills_3'],
+        skills_4 = sections['skills_4'],       
     )
     return html_content
     
-file_path = "/Users/sriyanm/PortfolioGenerator/attempt_2/backend/uploads/resume.pdf"
+file_path = "../backend/uploads/resume.pdf"
 text = extract_text_from_pdf(file_path)
 with open('text.txt', 'w') as file: # debug extracted text
     file.write(text)
@@ -250,5 +317,8 @@ for key, value in sections.items():
     print()
 html_content = generate_html(sections)
 
-with open('../frontend/index.html', 'w') as f:
+with open('../backend/portfolio.html', 'w') as f:
     f.write(html_content)
+    
+if __name__ == '__main__':
+    app.run(debug=False)
